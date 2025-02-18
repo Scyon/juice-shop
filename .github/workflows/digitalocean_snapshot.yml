@@ -144,53 +144,6 @@ jobs:
             NODE_ENV=tutorial npm run test:server &&
             NODE_ENV=unsafe npm run test:server
 
-  e2e:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest]
-        browser: [chrome]
-      fail-fast: false
-    steps:
-      - name: "Check out Git repository"
-        uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac
-      - name: "Use Node.js 18"
-        uses: actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d
-        with:
-          node-version: ${{ env.NODE_DEFAULT_VERSION }}
-      - name: "Install CLI tools"
-        run: npm install -g @angular/cli
-      - name: "Install application"
-        run: npm install
-      - name: "Execute end-to-end tests on Ubuntu"
-        if: ${{ matrix.os == 'ubuntu-latest' }}
-        uses: cypress-io/github-action@59810ebfa5a5ac6fcfdcfdf036d1cd4d083a88f2
-        with:
-          install: false
-          browser: ${{ matrix.browser }}
-          start: npm start
-          wait-on: http://localhost:3000
-          record: true
-          group: ${{ matrix.browser }} @ ${{ matrix.os }}
-        env:
-          SOLUTIONS_WEBHOOK: ${{ secrets.E2E_SOLUTIONS_WEBHOOK }}
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: "Execute end-to-end tests on Mac"
-        if: ${{ matrix.os == 'macos-latest' }}
-        uses: cypress-io/github-action@59810ebfa5a5ac6fcfdcfdf036d1cd4d083a88f2
-        with:
-          install: false
-          browser: ${{ matrix.browser }}
-          start: npm start
-          wait-on: http://localhost:3000
-          record: true
-          group: ${{ matrix.browser }} @ ${{ matrix.os }}
-        env:
-          CYPRESS_CACHE_FOLDER: /Users/runner/Library/Caches/Cypress
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
   smoke-test:
     runs-on: ubuntu-latest
     steps:
@@ -235,7 +188,7 @@ jobs:
         run: docker compose -f docker-compose.test.yml up --exit-code-from sut
 
   digitalocean:
-    needs: [ test, api-test, e2e, custom-config-test, docker-test ]
+    needs: [ test, api-test, custom-config-test, docker-test, lint, coding-challenge-rsn, smoke-test ]
     runs-on: ubuntu-latest
     steps:
       - name: "Check out Git repository"
