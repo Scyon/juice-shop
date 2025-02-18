@@ -78,7 +78,7 @@ jobs:
         uses: nick-invision/retry@943e742917ac94714d2f408a0e8320f2d1fcafcd
         with:
           timeout_minutes: 15
-          max_attempts: 3
+          max_attempts: 1
           command: npm test
 
   api-test:
@@ -120,9 +120,8 @@ jobs:
         uses: nick-invision/retry@943e742917ac94714d2f408a0e8320f2d1fcafcd
         with:
           timeout_minutes: 10
-          max_attempts: 3
+          max_attempts: 1
           command: >
-            npm run test:server &&
             NODE_ENV=ctf npm run test:server
 
   smoke-test:
