@@ -1,5 +1,3 @@
-
-# Release workflow - builds and pushes to DO Registry on version tags
 name: "Release Pipeline"
 on:
   push:
