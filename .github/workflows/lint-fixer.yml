@@ -1,6 +1,9 @@
 name: "Let me lint:fix that for you"
 
-on: [push]
+on:
+  push:
+    tags-ignore:
+      - '*'  # Ignore all tags
 
 jobs:
   LMLFTFY:
