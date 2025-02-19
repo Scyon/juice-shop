@@ -8,14 +8,6 @@ application:
   localBackupEnabled: false
   welcomeBanner:
     showOnFirstStart: false
-  challenges:
-    showHints: false
-    safetyMode: disabled
-    showFeedbackButtons: false
-  hackingInstructor:
-    isEnabled: false
-  ctf:
-    showFlagsInNotifications: true
   social:
     twitterUrl: 'https://twitter.com/ScyonSecurity'
     facebookUrl: null
@@ -24,4 +16,13 @@ application:
     pressKitUrl: null
     nftUrl: null
     questionnaireUrl: null
+challenges:
+  showHints: false
+  safetyMode: disabled
+  showFeedbackButtons: false
+hackingInstructor:
+  isEnabled: false
+ctf:
+  showFlagsInNotifications: true
+
 
