@@ -1,0 +1,27 @@
+application:
+  name: 'Scyon Juice Shop'
+  logo: JuiceShopCTF_Logo.png
+  favicon: favicon_ctf.ico
+  theme: indigo-pink
+  showVersionNumber: false
+  showGitHubLinks: false
+  localBackupEnabled: false
+  welcomeBanner:
+    showOnFirstStart: false
+  challenges:
+    showHints: false
+    safetyMode: disabled
+    showFeedbackButtons: false
+  hackingInstructor:
+    isEnabled: false
+  ctf:
+    showFlagsInNotifications: true
+  social:
+    twitterUrl: 'https://twitter.com/ScyonSecurity'
+    facebookUrl: null
+    slackUrl: null
+    redditUrl: null
+    pressKitUrl: null
+    nftUrl: null
+    questionnaireUrl: null
+
