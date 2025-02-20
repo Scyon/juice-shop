@@ -83,6 +83,7 @@ export interface ChallengesConfig {
   safetyOverride: boolean
   showFeedbackButtons: boolean
   csafHashValue: string
+  enabledCategories: string[]
 }
 
 export interface HackingInstructorConfig {

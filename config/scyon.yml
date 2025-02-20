@@ -18,11 +18,24 @@ application:
     questionnaireUrl: null
 challenges:
   showHints: false
-  safetyMode: disabled
   showFeedbackButtons: false
+  enabledCategories:
+    - Broken Access Control
+    - Broken Anti Automation
+    - Broken Authentication
+    - Cryptographic Issues
+    - Improper Input Validation
+    - Insecure Deserialization
+    - Injection
+    - Miscellaneous
+    - Security Misconfiguration
+    - Security through Obscurity
+    - Sensitive Data Exposure
+    - Unvalidated Redirects
+    - Vulnerable Components
+    - XSS
+    - XXE
 hackingInstructor:
   isEnabled: false
 ctf:
   showFlagsInNotifications: true
-
-

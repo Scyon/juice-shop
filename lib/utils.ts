@@ -157,12 +157,16 @@ type isEnvironmentFunction = () => boolean
 
 export function getChallengeEnablementStatus (challenge: Challenge,
   safetyModeSetting: SafetyModeSetting = config.get<SafetyModeSetting>('challenges.safetyMode'),
+  enabledChallengeCategories: string[] = config.get<string[]>('challenges.enabledCategories'),
   isEnvironmentFunctions: {
     isDocker: isEnvironmentFunction
     isHeroku: isEnvironmentFunction
     isWindows: isEnvironmentFunction
     isGitpod: isEnvironmentFunction
   } = { isDocker, isHeroku, isWindows, isGitpod }): ChallengeEnablementStatus {
+  if (challenge?.category && !enabledChallengeCategories.includes(challenge.category)) {
+    return { enabled: false, disabledBecause: 'Category Disabled' }
+  }
   if (!challenge?.disabledEnv) {
     return { enabled: true, disabledBecause: null }
   }

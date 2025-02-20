@@ -128,6 +128,8 @@ challenges:
     type: boolean
   csafHashValue:
     type: string
+  enabledCategories:
+    - type: string
 hackingInstructor:
   isEnabled:
     type: boolean
