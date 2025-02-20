@@ -17,8 +17,9 @@ application:
     nftUrl: null
     questionnaireUrl: null
 challenges:
-  showHints: false
+  showHints: true
   showFeedbackButtons: false
+  safetyMode: enabled
   enabledCategories:
     - Broken Access Control
     - Broken Anti Automation
@@ -28,14 +29,14 @@ challenges:
     - Insecure Deserialization
     - Injection
     - Miscellaneous
-    - Security Misconfiguration
-    - Security through Obscurity
-    - Sensitive Data Exposure
-    - Unvalidated Redirects
+#    - Security Misconfiguration
+#    - Security through Obscurity
+#    - Sensitive Data Exposure
+#    - Unvalidated Redirects
     - Vulnerable Components
     - XSS
     - XXE
 hackingInstructor:
-  isEnabled: false
+  isEnabled: true
 ctf:
   showFlagsInNotifications: true

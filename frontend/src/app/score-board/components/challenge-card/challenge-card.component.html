@@ -14,20 +14,32 @@
   </div>
   <div class="badge-group">
     <!-- info text if the challenge is unavailable -->
-    <button
-      class="badge"
-      *ngIf="challenge.disabledEnv !== null && challenge.disabledEnv !== 'safetyMode'"
-      [matTooltip]="'CHALLENGE_UNAVAILABLE' | translate:{ env: challenge.disabledEnv }"
+    <div
+      *ngIf="challenge.disabledEnv !== null"
+      [ngSwitch]="challenge.disabledEnv"
     >
-      <mat-icon [style.color]="'var(--theme-warn)'">info_outline</mat-icon>
-    </button>
-    <button
-      class="badge"
-      *ngIf="challenge.disabledEnv === 'safetyMode'"
-      [matTooltip]="'CHALLENGE_UNAVAILABLE_SAFETYMODE'| translate:{ env: challenge.disabledEnv}"
-    >
-      <mat-icon [style.color]="'var(--theme-warn)'">info_outline</mat-icon>
-    </button>
+      <button
+        class="badge"
+        *ngSwitchCase="'categoryDisabled'"
+        [matTooltip]="'CHALLENGE_UNAVAILABLE_DISABLED'| translate"
+      >
+        <mat-icon [style.color]="'var(--theme-warn)'">info_outline</mat-icon>
+      </button>
+      <button
+        class="badge"
+        *ngSwitchCase="'safetyMode'"
+        [matTooltip]="'CHALLENGE_UNAVAILABLE_SAFETYMODE'| translate:{ env: challenge.disabledEnv}"
+      >
+        <mat-icon [style.color]="'var(--theme-warn)'">info_outline</mat-icon>
+      </button>
+      <button
+        class="badge"
+        *ngSwitchDefault
+        [matTooltip]="'CHALLENGE_UNAVAILABLE' | translate:{ env: challenge.disabledEnv }"
+      >
+        <mat-icon [style.color]="'var(--theme-warn)'">info_outline</mat-icon>
+      </button>
+    </div>
     <!-- coding challenge badge -->
     <button
       class="badge"

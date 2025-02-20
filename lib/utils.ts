@@ -165,7 +165,7 @@ export function getChallengeEnablementStatus (challenge: Challenge,
     isGitpod: isEnvironmentFunction
   } = { isDocker, isHeroku, isWindows, isGitpod }): ChallengeEnablementStatus {
   if (challenge?.category && !enabledChallengeCategories.includes(challenge.category)) {
-    return { enabled: false, disabledBecause: 'Category Disabled' }
+    return { enabled: false, disabledBecause: 'categoryDisabled' }
   }
   if (!challenge?.disabledEnv) {
     return { enabled: true, disabledBecause: null }
@@ -188,7 +188,7 @@ export function getChallengeEnablementStatus (challenge: Challenge,
     return { enabled: false, disabledBecause: 'Gitpod' }
   }
   if (challenge.disabledEnv && safetyModeSetting === 'enabled') {
-    return { enabled: false, disabledBecause: 'Safety Mode' }
+    return { enabled: false, disabledBecause: 'safetyMode' }
   }
 
   return { enabled: true, disabledBecause: null }
