@@ -129,7 +129,10 @@ challenges:
   csafHashValue:
     type: string
   enabledCategories:
-    - type: string
+    - challengeCategory:
+        type: string
+      enabled:
+        type: boolean
 hackingInstructor:
   isEnabled:
     type: boolean

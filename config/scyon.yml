@@ -21,21 +21,36 @@ challenges:
   showFeedbackButtons: false
   safetyMode: enabled
   enabledCategories:
-    - Broken Access Control
-    - Broken Anti Automation
-    - Broken Authentication
-    - Cryptographic Issues
-    - Improper Input Validation
-    - Insecure Deserialization
-    - Injection
-    - Miscellaneous
-#    - Security Misconfiguration
-#    - Security through Obscurity
-#    - Sensitive Data Exposure
-#    - Unvalidated Redirects
-    - Vulnerable Components
-    - XSS
-    - XXE
+    - challengeCategory: Broken Access Control
+      enabled: true
+    - challengeCategory: Broken Anti Automation
+      enabled: true
+    - challengeCategory: Broken Authentication
+      enabled: true
+    - challengeCategory: Cryptographic Issues
+      enabled: true
+    - challengeCategory: Improper Input Validation
+      enabled: true
+    - challengeCategory: Insecure Deserialization
+      enabled: true
+    - challengeCategory: Injection
+      enabled: false
+    - challengeCategory: Miscellaneous
+      enabled: true
+    - challengeCategory: Security Misconfiguration
+      enabled: false
+    - challengeCategory: Security through Obscurity
+      enabled: true
+    - challengeCategory: Sensitive Data Exposure
+      enabled: true
+    - challengeCategory: Unvalidated Redirects
+      enabled: true
+    - challengeCategory: Vulnerable Components
+      enabled: true
+    - challengeCategory: XSS
+      enabled: true
+    - challengeCategory: XXE
+      enabled: true
 hackingInstructor:
   isEnabled: true
 ctf:
