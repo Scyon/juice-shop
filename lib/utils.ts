@@ -17,7 +17,7 @@ import type { Challenge } from 'data/types'
 import isHeroku from './is-heroku'
 import isDocker from './is-docker'
 import isWindows from './is-windows'
-import type { ChallengeCategoryStatus } from './config.types'
+import type { ChallengeCategory } from './config.types'
 export { default as isDocker } from './is-docker'
 export { default as isWindows } from './is-windows'
 // import isGitpod from 'is-gitpod') // FIXME Roll back to this when https://github.com/dword-design/is-gitpod/issues/94 is resolve
@@ -158,7 +158,7 @@ type isEnvironmentFunction = () => boolean
 
 export function getChallengeEnablementStatus (challenge: Challenge,
   safetyModeSetting: SafetyModeSetting = config.get<SafetyModeSetting>('challenges.safetyMode'),
-  ChallengeCategories: ChallengeCategoryStatus[] = config.get<ChallengeCategoryStatus[]>('challenges.enabledCategories'),
+  ChallengeCategories: ChallengeCategory[] = config.get<ChallengeCategory[]>('challenges.categories'),
   isEnvironmentFunctions: {
     isDocker: isEnvironmentFunction
     isHeroku: isEnvironmentFunction
@@ -166,7 +166,7 @@ export function getChallengeEnablementStatus (challenge: Challenge,
     isGitpod: isEnvironmentFunction
   } = { isDocker, isHeroku, isWindows, isGitpod }): ChallengeEnablementStatus {
   if (challenge?.category &&
-      ChallengeCategories.some(cat => cat.challengeCategory === challenge.category && !cat.enabled)) {
+      ChallengeCategories.some(cat => cat.category === challenge.category && !cat.enabled)) {
     return { enabled: false, disabledBecause: 'categoryDisabled' }
   }
   if (!challenge?.disabledEnv) {

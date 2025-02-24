@@ -72,8 +72,8 @@ export interface ApplicationConfig {
   }
 }
 
-export interface ChallengeCategoryStatus {
-  challengeCategory: string
+export interface ChallengeCategory {
+  category: string
   enabled: boolean
 }
 
@@ -88,7 +88,7 @@ export interface ChallengesConfig {
   safetyOverride: boolean
   showFeedbackButtons: boolean
   csafHashValue: string
-  enabledCategories: ChallengeCategoryStatus[]
+  categories: ChallengeCategory[]
 }
 
 export interface HackingInstructorConfig {

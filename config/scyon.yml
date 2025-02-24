@@ -20,36 +20,36 @@ challenges:
   showHints: true
   showFeedbackButtons: false
   safetyMode: enabled
-  enabledCategories:
-    - challengeCategory: Broken Access Control
+  categories:
+    - category: Broken Access Control
       enabled: true
-    - challengeCategory: Broken Anti Automation
+    - category: Broken Anti Automation
       enabled: true
-    - challengeCategory: Broken Authentication
+    - category: Broken Authentication
       enabled: true
-    - challengeCategory: Cryptographic Issues
+    - category: Cryptographic Issues
       enabled: true
-    - challengeCategory: Improper Input Validation
+    - category: Improper Input Validation
       enabled: true
-    - challengeCategory: Insecure Deserialization
+    - category: Insecure Deserialization
       enabled: true
-    - challengeCategory: Injection
+    - category: Injection
       enabled: false
-    - challengeCategory: Miscellaneous
+    - category: Miscellaneous
       enabled: true
-    - challengeCategory: Security Misconfiguration
+    - category: Security Misconfiguration
       enabled: false
-    - challengeCategory: Security through Obscurity
+    - category: Security through Obscurity
       enabled: true
-    - challengeCategory: Sensitive Data Exposure
+    - category: Sensitive Data Exposure
       enabled: true
-    - challengeCategory: Unvalidated Redirects
+    - category: Unvalidated Redirects
       enabled: true
-    - challengeCategory: Vulnerable Components
+    - category: Vulnerable Components
       enabled: true
-    - challengeCategory: XSS
+    - category: XSS
       enabled: true
-    - challengeCategory: XXE
+    - category: XXE
       enabled: true
 hackingInstructor:
   isEnabled: true
