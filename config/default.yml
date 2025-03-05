@@ -80,6 +80,37 @@ challenges:
   safetyMode: auto
   showFeedbackButtons: true
   csafHashValue: 7e7ce7c65db3bf0625fcea4573d25cff41f2f7e3474f2c74334b14fc65bb4fd26af802ad17a3a03bf0eee6827a00fb8f7905f338c31b5e6ea9cb31620242e843
+  categories:
+    - category: Broken Access Control
+      enabled: true
+    - category: Broken Anti Automation
+      enabled: true
+    - category: Broken Authentication
+      enabled: true
+    - category: Cryptographic Issues
+      enabled: true
+    - category: Improper Input Validation
+      enabled: true
+    - category: Insecure Deserialization
+      enabled: true
+    - category: Injection
+      enabled: true
+    - category: Miscellaneous
+      enabled: true
+    - category: Security Misconfiguration
+      enabled: true
+    - category: Security through Obscurity
+      enabled: true
+    - category: Sensitive Data Exposure
+      enabled: true
+    - category: Unvalidated Redirects
+      enabled: true
+    - category: Vulnerable Components
+      enabled: true
+    - category: XSS
+      enabled: true
+    - category: XXE
+      enabled: true
 hackingInstructor:
   isEnabled: true
   avatarImage: JuicyBot.png

@@ -35,6 +35,7 @@ interface CodeChallengeSolvedWebsocket {
 })
 export class ScoreBoardComponent implements OnInit, OnDestroy {
   public allChallenges: EnrichedChallenge[] = []
+  public enabledChallenges: EnrichedChallenge[] = []
   public filteredChallenges: EnrichedChallenge[] = []
   public filterSetting: FilterSetting = structuredClone(DEFAULT_FILTER_SETTING)
   public applicationConfiguration: Config | null = null
@@ -73,6 +74,7 @@ export class ScoreBoardComponent implements OnInit, OnDestroy {
         }
       })
       this.allChallenges = transformedChallenges
+      this.enabledChallenges = this.allChallenges.filter((challenge) => challenge.disabledEnv === null)
       this.filterAndUpdateChallenges()
       this.isInitialized = true
     })
@@ -116,6 +118,15 @@ export class ScoreBoardComponent implements OnInit, OnDestroy {
       }
       return { ...challenge }
     })
+    this.enabledChallenges = this.enabledChallenges.map((challenge) => {
+      if (challenge.key === data.key) {
+        return {
+          ...challenge,
+          solved: true
+        }
+      }
+      return { ...challenge }
+    })
     this.filterAndUpdateChallenges()
     // manually trigger angular change detection... :(
     // unclear why this is necessary, possibly because the socket.io callback is not running inside angular
@@ -136,6 +147,15 @@ export class ScoreBoardComponent implements OnInit, OnDestroy {
       }
       return { ...challenge }
     })
+    this.enabledChallenges = this.enabledChallenges.map((challenge) => {
+      if (challenge.key === data.key) {
+        return {
+          ...challenge,
+          codingChallengeStatus: data.codingChallengeStatus
+        }
+      }
+      return { ...challenge }
+    })
     this.filterAndUpdateChallenges()
     // manually trigger angular change detection... :(
     // unclear why this is necessary, possibly because the socket.io callback is not running inside angular
@@ -144,7 +164,7 @@ export class ScoreBoardComponent implements OnInit, OnDestroy {
 
   filterAndUpdateChallenges (): void {
     this.filteredChallenges = sortChallenges(
-      filterChallenges(this.allChallenges, {
+      filterChallenges(this.enabledChallenges, {
         ...this.filterSetting,
         restrictToTutorialChallengesFirst: this.applicationConfiguration?.challenges?.restrictToTutorialsFirst ?? true
       })

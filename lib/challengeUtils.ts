@@ -19,12 +19,15 @@ const globalWithSocketIO = global as typeof globalThis & {
 }
 
 export const solveIf = function (challenge: any, criteria: () => any, isRestore: boolean = false) {
-  if (notSolved(challenge) && criteria()) {
+  if (notSolved(challenge) && criteria() && utils.isChallengeEnabled(challenge)) {
     solve(challenge, isRestore)
   }
 }
 
 export const solve = function (challenge: any, isRestore = false) {
+  if (!notSolved(challenge) || !utils.isChallengeEnabled(challenge)) {
+    return
+  }
   challenge.solved = true
   challenge.save().then((solvedChallenge: { difficulty: number, key: string, name: string }) => {
     logger.info(`${isRestore ? colors.grey('Restored') : colors.green('Solved')} ${solvedChallenge.difficulty}-star ${colors.cyan(solvedChallenge.key)} (${solvedChallenge.name})`)

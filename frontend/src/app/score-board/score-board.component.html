@@ -1,14 +1,14 @@
 <div class="score-row">
-  <hacking-challenge-progress-score-card [allChallenges]="allChallenges" />
-  <coding-challenge-progress-score-card [allChallenges]="allChallenges" />
-  <difficulty-overview-score-card [allChallenges]="allChallenges" />
+  <hacking-challenge-progress-score-card [allChallenges]="enabledChallenges" />
+  <coding-challenge-progress-score-card [allChallenges]="enabledChallenges" />
+  <difficulty-overview-score-card [allChallenges]="enabledChallenges" />
 </div>
 
 <filter-settings
   *ngIf="applicationConfiguration?.challenges.restrictToTutorialsFirst === false"
   [filterSetting]="filterSetting"
   (filterSettingChange)="onFilterSettingUpdate($event)"
-  [allChallenges]="allChallenges"
+  [allChallenges]="enabledChallenges"
   [reset]="reset.bind(this)"
 ></filter-settings>
 
@@ -24,7 +24,7 @@
   ></challenges-unavailable-warning>
 
   <tutorial-mode-warning
-    [allChallenges]="allChallenges"
+    [allChallenges]="enabledChallenges"
     [applicationConfig]="applicationConfiguration"
   ></tutorial-mode-warning>
 
@@ -41,7 +41,7 @@
 
   <ng-template #emptyChallenges>
     <!-- only showing when there are more than 1 challenge in total. not completely loaded otherwise -->
-    <div class="empty-challenges" *ngIf="allChallenges.length > 0">
+    <div class="empty-challenges" *ngIf="enabledChallenges.length > 0">
       <p>{{ 'NO_CHALLENGES_FOUND' | translate }}</p>
     </div>
   </ng-template>
