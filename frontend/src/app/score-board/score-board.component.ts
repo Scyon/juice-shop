@@ -35,6 +35,7 @@ interface CodeChallengeSolvedWebsocket {
 })
 export class ScoreBoardComponent implements OnInit, OnDestroy {
   public allChallenges: EnrichedChallenge[] = []
+  public enabledChallenges: EnrichedChallenge[] = []
   public filteredChallenges: EnrichedChallenge[] = []
   public filterSetting: FilterSetting = structuredClone(DEFAULT_FILTER_SETTING)
   public applicationConfiguration: Config | null = null
@@ -73,6 +74,7 @@ export class ScoreBoardComponent implements OnInit, OnDestroy {
         }
       })
       this.allChallenges = transformedChallenges
+      this.enabledChallenges = this.allChallenges.filter((challenge) => challenge.disabledEnv === null)
       this.filterAndUpdateChallenges()
       this.isInitialized = true
     })
@@ -144,7 +146,7 @@ export class ScoreBoardComponent implements OnInit, OnDestroy {
 
   filterAndUpdateChallenges (): void {
     this.filteredChallenges = sortChallenges(
-      filterChallenges(this.allChallenges, {
+      filterChallenges(this.enabledChallenges, {
         ...this.filterSetting,
         restrictToTutorialChallengesFirst: this.applicationConfiguration?.challenges?.restrictToTutorialsFirst ?? true
       })

@@ -107,7 +107,8 @@ describe('ScoreBoardComponent', () => {
           category: 'category-red',
           difficulty: 3,
           hasSnippet: true,
-          solved: false
+          solved: false,
+          disabledEnv: null
         })
       ])
     )
