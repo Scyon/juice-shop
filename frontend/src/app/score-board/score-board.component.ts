@@ -118,6 +118,15 @@ export class ScoreBoardComponent implements OnInit, OnDestroy {
       }
       return { ...challenge }
     })
+    this.enabledChallenges = this.enabledChallenges.map((challenge) => {
+      if (challenge.key === data.key) {
+        return {
+          ...challenge,
+          solved: true
+        }
+      }
+      return { ...challenge }
+    })
     this.filterAndUpdateChallenges()
     // manually trigger angular change detection... :(
     // unclear why this is necessary, possibly because the socket.io callback is not running inside angular
@@ -130,6 +139,15 @@ export class ScoreBoardComponent implements OnInit, OnDestroy {
     }
 
     this.allChallenges = this.allChallenges.map((challenge) => {
+      if (challenge.key === data.key) {
+        return {
+          ...challenge,
+          codingChallengeStatus: data.codingChallengeStatus
+        }
+      }
+      return { ...challenge }
+    })
+    this.enabledChallenges = this.enabledChallenges.map((challenge) => {
       if (challenge.key === data.key) {
         return {
           ...challenge,

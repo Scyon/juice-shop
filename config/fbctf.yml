@@ -9,6 +9,37 @@ application:
 challenges:
   showHints: false
   showFeedbackButtons: false
+  categories:
+    - category: Broken Access Control
+      enabled: true
+    - category: Broken Anti Automation
+      enabled: true
+    - category: Broken Authentication
+      enabled: true
+    - category: Cryptographic Issues
+      enabled: true
+    - category: Improper Input Validation
+      enabled: true
+    - category: Insecure Deserialization
+      enabled: true
+    - category: Injection
+      enabled: true
+    - category: Miscellaneous
+      enabled: true
+    - category: Security Misconfiguration
+      enabled: true
+    - category: Security through Obscurity
+      enabled: true
+    - category: Sensitive Data Exposure
+      enabled: true
+    - category: Unvalidated Redirects
+      enabled: true
+    - category: Vulnerable Components
+      enabled: true
+    - category: XSS
+      enabled: true
+    - category: XXE
+      enabled: true
 hackingInstructor:
   isEnabled: false
 ctf:

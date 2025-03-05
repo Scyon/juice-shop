@@ -34,11 +34,11 @@ challenges:
     - category: Insecure Deserialization
       enabled: true
     - category: Injection
-      enabled: false
+      enabled: true
     - category: Miscellaneous
       enabled: true
     - category: Security Misconfiguration
-      enabled: false
+      enabled: true
     - category: Security through Obscurity
       enabled: true
     - category: Sensitive Data Exposure

@@ -90,7 +90,8 @@ describe('ScoreBoardComponent', () => {
           key: 'challenge-1',
           category: 'category-blue',
           difficulty: 1,
-          solved: true
+          solved: true,
+          disabledEnv: null
         }),
         createChallenge({
           name: 'Challenge 2',
@@ -99,7 +100,8 @@ describe('ScoreBoardComponent', () => {
           difficulty: 5,
           solved: false,
           hasSnippet: true,
-          codingChallengeStatus: 1
+          codingChallengeStatus: 1,
+          disabledEnv: null
         }),
         createChallenge({
           name: 'Challenge 3',

@@ -127,7 +127,7 @@ describe('utils', () => {
       it(`challenges without disabledEnv are enabled with safetyMode set to ${safetyMode}`, () => {
         const challenge: ChallengeModel = { disabledEnv: null } as unknown as ChallengeModel
 
-        expect(getChallengeEnablementStatus(challenge, safetyMode, defaultIsEnvironmentFunctions))
+        expect(getChallengeEnablementStatus(challenge, safetyMode, undefined, defaultIsEnvironmentFunctions))
           .to.deep.equal({ enabled: true, disabledBecause: null })
       })
     }
@@ -144,7 +144,7 @@ describe('utils', () => {
         const challenge: ChallengeModel = { disabledEnv: testCase.name } as unknown as ChallengeModel
 
         const isEnvironmentFunctions = { ...defaultIsEnvironmentFunctions, [testCase.environmentFunction]: () => true }
-        expect(getChallengeEnablementStatus(challenge, 'enabled', isEnvironmentFunctions))
+        expect(getChallengeEnablementStatus(challenge, 'enabled', undefined, isEnvironmentFunctions))
           .to.deep.equal({ enabled: false, disabledBecause: testCase.name })
       })
 
@@ -152,7 +152,7 @@ describe('utils', () => {
         const challenge: ChallengeModel = { disabledEnv: testCase.name } as unknown as ChallengeModel
 
         const isEnvironmentFunctions = { ...defaultIsEnvironmentFunctions, [testCase.environmentFunction]: () => true }
-        expect(getChallengeEnablementStatus(challenge, 'auto', isEnvironmentFunctions))
+        expect(getChallengeEnablementStatus(challenge, 'auto', undefined, isEnvironmentFunctions))
           .to.deep.equal({ enabled: false, disabledBecause: testCase.name })
       })
 
@@ -160,8 +160,16 @@ describe('utils', () => {
         const challenge: ChallengeModel = { disabledEnv: testCase.name } as unknown as ChallengeModel
 
         const isEnvironmentFunctions = { ...defaultIsEnvironmentFunctions, [testCase.environmentFunction]: () => true }
-        expect(getChallengeEnablementStatus(challenge, 'disabled', isEnvironmentFunctions))
+        expect(getChallengeEnablementStatus(challenge, 'disabled', undefined, isEnvironmentFunctions))
           .to.deep.equal({ enabled: true, disabledBecause: null })
+      })
+
+      it('challenge from disabled category should be disabled', () => {
+        const challenge: ChallengeModel = { category: 'category-red' } as unknown as ChallengeModel
+
+        const isEnvironmentFunctions = { ...defaultIsEnvironmentFunctions, [testCase.environmentFunction]: () => true }
+        expect(getChallengeEnablementStatus(challenge, 'disabled', [{ category: 'category-red', enabled: false }], isEnvironmentFunctions))
+          .to.deep.equal({ enabled: false, disabledBecause: 'categoryDisabled' })
       })
     }
   })
