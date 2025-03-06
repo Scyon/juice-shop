@@ -17,9 +17,12 @@ application:
     nftUrl: null
     questionnaireUrl: null
 challenges:
-  showHints: true
   showFeedbackButtons: false
-  safetyMode: enabled
+  safetyMode: disabled
+  showSolvedNotifications: true
+  showHints: true
+  showMitigations: true
+  codingChallengesEnabled: solved # Options: never  solved  always
   categories:
     - category: Broken Access Control
       enabled: true
