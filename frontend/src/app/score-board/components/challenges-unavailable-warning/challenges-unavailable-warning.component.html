@@ -3,10 +3,13 @@
     <i class="env-icon" *ngIf="disabledBecauseOfEnv !== 'Windows'" [ngClass]="'icon-' + disabledBecauseOfEnv.toString().toLowerCase()"></i>
     <i class="env-icon" *ngIf="disabledBecauseOfEnv === 'Windows'" [ngClass]="'fab fa-' + disabledBecauseOfEnv.toString().toLowerCase()"></i>
   </ng-container>
-  
-  <span *ngIf="disabledBecauseOfEnv !=='Safety Mode'" warning-text [innerHTML]="'INFO_DISABLED_CHALLENGES' | translate: {num: numberOfDisabledChallenges, env: disabledBecauseOfEnv}"></span>
-  <span *ngIf="disabledBecauseOfEnv ==='Safety Mode'" warning-text [innerHTML]="'INFO_DISABLED_CHALLENGES' | translate: {num: numberOfDisabledChallenges,env:'safety mode being turned on'}"></span>
-  
+
+  <div [ngSwitch]="disabledBecauseOfEnv">
+    <span *ngSwitchCase="'Safety Mode'" warning-text [innerHTML]="'INFO_DISABLED_CHALLENGES' | translate: {num: numberOfDisabledChallenges,env:'safety mode being turned on'}"></span>
+    <span *ngSwitchCase="'categoryDisabled'" warning-text [innerHTML]="'INFO_DISABLED_CHALLENGES' | translate: {num: numberOfDisabledChallenges,env:'for this event'}"></span>
+    <span *ngSwitchDefault warning-text [innerHTML]="'INFO_DISABLED_CHALLENGES' | translate: {num: numberOfDisabledChallenges,env:disabledBecauseOfEnv}"></span>
+  </div>
+
   <button warning-action mat-button color="accent" (click)="toggleShowDisabledChallenges()">
     <ng-container *ngIf="filterSetting.showDisabledChallenges == false">
       {{ 'SHOW_DISABLED_CHALLENGES' | translate }}

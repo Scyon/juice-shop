@@ -17,9 +17,12 @@ application:
     nftUrl: null
     questionnaireUrl: null
 challenges:
-  showHints: true
   showFeedbackButtons: false
-  safetyMode: enabled
+  safetyMode: disabled
+  showSolvedNotifications: true
+  showHints: true
+  showMitigations: true
+  codingChallengesEnabled: solved # Options: never  solved  always
   categories:
     - category: Broken Access Control
       enabled: true
@@ -34,11 +37,11 @@ challenges:
     - category: Insecure Deserialization
       enabled: true
     - category: Injection
-      enabled: false
+      enabled: true
     - category: Miscellaneous
       enabled: true
     - category: Security Misconfiguration
-      enabled: false
+      enabled: true
     - category: Security through Obscurity
       enabled: true
     - category: Sensitive Data Exposure

@@ -8,6 +8,7 @@ import config from 'config'
 import type { Product as ProductConfig } from '../../lib/config.types'
 import chai = require('chai')
 import sinonChai = require('sinon-chai')
+import {challenges} from "../../data/datacache";
 const expect = chai.expect
 chai.use(sinonChai)
 const cache = require('../../data/datacache')
@@ -17,6 +18,7 @@ const utils = require('../../lib/utils')
 describe('verify', () => {
   const verify = require('../../routes/verify')
   const challenges = require('../../data/datacache').challenges
+  let skipForgedJWT: boolean = false
   let req: any
   let res: any
   let next: any
@@ -252,7 +254,8 @@ describe('verify', () => {
   describe('jwtChallenges', () => {
     beforeEach(() => {
       challenges.jwtUnsignedChallenge = { solved: false, save }
-      challenges.jwtForgedChallenge = { solved: false, save }
+      challenges.jwtForgedChallenge = { solved: false, save, disabledEnv: ['Windows'] }
+      skipForgedJWT = !utils.isChallengeEnabled(challenges.jwtForgedChallenge)
     })
 
     it('"jwtUnsignedChallenge" is solved when forged unsigned token has email jwtn3d@juice-sh.op in the payload', () => {
@@ -288,7 +291,7 @@ describe('verify', () => {
       expect(challenges.jwtForgedChallenge.solved).to.equal(false)
     })
 
-    if (utils.isChallengeEnabled(challenges.jwtForgedChallenge)) {
+    if (skipForgedJWT) {
       it('"jwtForgedChallenge" is solved when forged token HMAC-signed with public RSA-key has email rsa_lord@juice-sh.op in the payload', () => {
         /*
         Header: { "alg": "HS256", "typ": "JWT" }
