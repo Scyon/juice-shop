@@ -10,16 +10,15 @@ import sinonChai from 'sinon-chai'
 import { challenges, products, setRetrieveBlueprintChallengeFile } from '../../data/datacache'
 import type { Product, Challenge } from 'data/types'
 import type { Product as ProductConfig } from '../../lib/config.types'
-import chai = require('chai')
-import sinonChai = require('sinon-chai')
-import {challenges} from "../../data/datacache";
+import * as security from '../../lib/insecurity'
+import { type UserModel } from 'models/user'
+import * as utils from '../../lib/utils'
+import * as verify from '../../routes/verify'
 const expect = chai.expect
 
 chai.use(sinonChai)
 
 describe('verify', () => {
-  const verify = require('../../routes/verify')
-  const challenges = require('../../data/datacache').challenges
   let skipForgedJWT: boolean = false
   let req: any
   let res: any
@@ -253,8 +252,8 @@ describe('verify', () => {
 
   describe('jwtChallenges', () => {
     beforeEach(() => {
-      challenges.jwtUnsignedChallenge = { solved: false, save }
-      challenges.jwtForgedChallenge = { solved: false, save, disabledEnv: ['Windows'] }
+      challenges.jwtUnsignedChallenge = { solved: false, save } as unknown as Challenge
+      challenges.jwtForgedChallenge = { solved: false, save, disabledEnv: ['Windows'] } as unknown as Challenge
       skipForgedJWT = !utils.isChallengeEnabled(challenges.jwtForgedChallenge)
     })
 
