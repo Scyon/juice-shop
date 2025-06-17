@@ -373,3 +373,6 @@ ctf:
     yamlBombChallenge:
       name: Eswatini
       code: SZ
+    leakedApiKeyChallenge:
+      name: San Marino
+      code: SM

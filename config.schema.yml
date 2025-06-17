@@ -132,6 +132,8 @@ challenges:
     type: boolean
   csafHashValue:
     type: string
+  metricsIgnoredUserAgents:
+    - type: string
   categories:
     - category:
         type: string
@@ -738,6 +740,11 @@ ctf:
       code:
         type: string
     yamlBombChallenge:
+      name:
+        type: string
+      code:
+        type: string
+    leakedApiKeyChallenge:
       name:
         type: string
       code:
